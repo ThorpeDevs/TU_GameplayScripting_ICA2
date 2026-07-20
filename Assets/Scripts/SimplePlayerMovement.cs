@@ -1,8 +1,6 @@
-using System;
-using Unity.XR.Oculus.Input;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class SimplePlayerMovement : MonoBehaviour
 {
     public float speed;
     private float speedX, speedY;

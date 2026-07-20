@@ -9,7 +9,7 @@ public class KeyHandlerUE : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D colRef)
     {
-        if (colRef.gameObject.TryGetComponent<PlayerMovement>(out  PlayerMovement _))
+        if (colRef.gameObject.TryGetComponent(out  SimplePlayerMovement _))
         {
             _onOpenDoor?.Invoke(_doorInfo);
         }
