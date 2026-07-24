@@ -9,27 +9,28 @@ public class KeyHandlerUE : MonoBehaviour
     [SerializeField] private DoorInfo _doorInfo;
 
     [Header("Dialouge Trext")]
-    [SerializeField] private string nameText;
-    [SerializeField] private string bodyText;
+    [SerializeField] private string[] nameText;
+    [SerializeField] private string[] bodyText;
     
-    private void OnCollisionEnter2D(Collision2D colRef)
+    private void OnCollisionEnter2D(Collision2D colRef) // Fires on collison with the collider on the gameObject script is attached to
     {
-        if (colRef.gameObject.TryGetComponent(out  SimplePlayerMovement _))
+        if (colRef.gameObject.TryGetComponent(out  SimplePlayerMovement _)) // If the colliding object contains player movement
         {
-            _onOpenDoor?.Invoke(_doorInfo);
-            DialougeBehaviour.instance.CallDisplayText(nameText, bodyText);
+            _onOpenDoor?.Invoke(_doorInfo); // Invoke the unity event without expecting a return
+            DialougeBehaviour.instance.CallDisplayText(nameText, bodyText); // Send Dialouge Text To Dialouge Handler
         }
         else
         {
-            Debug.Log(colRef.gameObject.name);
+            Debug.Log(colRef.gameObject.name); // Debug print incase something else collides
         }
     }
 }
 
 [Serializable]
-public struct DoorInfo
+public struct DoorInfo //Allows for multiple object references to be sent within a unity event
 {
     public GameObject key;
     public GameObject doorCameraHolder;
     public GameObject door;
+    public GameObject roomLighting;
 }
